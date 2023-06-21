@@ -1,0 +1,123 @@
+.btn,
+.input {
+	padding: 7px 10px;
+	font-size: 22px;
+	background: transparent;
+	outline: none;
+	border-width: 1px;
+
+	@media (min-width: $md) {
+		padding: 7px 15px;
+		border-width: 2px;
+		font-size: 24px;
+	}
+}
+
+.btn {
+	white-space: nowrap;
+	user-select: none;
+	font-weight: 700;
+	cursor: pointer;
+	text-align: center;
+	
+	&:active {
+		transform: translate(0, 2px);
+	}
+
+	&--blue {
+		border-color: $blue;
+		color: $blue;
+
+		&:hover {
+			color: $white;
+			background: $blue;
+		}
+	}
+
+	&--red {
+		border-color: $red;
+		color: $red;
+
+		&:hover {
+			color: $white;
+			background: $red;
+		}
+	}
+}
+
+.input {
+	border-color: $black;
+
+	&.error {
+		border-color: $red;
+	}
+
+	&::placeholder {
+		color: $blue;
+	}
+}
+
+.checkbox {
+  cursor: pointer;
+
+  &__native {
+    display: none;
+  }
+
+  &__custom {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 4px;
+		margin-right: 4px;
+		width: 24px;
+		height: 24px;
+		border: 1px solid $black;
+		position: relative;
+		overflow: hidden;
+		background: none;
+		outline: none;
+		pointer-events: none;
+
+		@media (min-width: $md) {
+			margin-top: 8px;
+			margin-right: 8px;
+		}
+
+		&::before {
+			content: "";
+			width: 20px;
+			height: 15px;
+			border-right: 2px solid $blue;
+			border-bottom: 2px solid $blue;
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			transform: translate(-50%, -50%) rotate(45deg);
+			opacity: 0;
+		}
+  }
+
+	&__text {
+		font-size: 33px;
+		line-height: 1;
+
+		@media (min-width: $md) {
+			font-size: 35px;
+		}
+	}
+
+  &__native:checked + .checkbox__custom {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+	&__native:checked ~ .checkbox__text{
+		text-decoration: line-through;
+		text-decoration-color: $red;
+
+		&--no-line {
+			text-decoration: none;
+		}
+	}
+}

@@ -1,0 +1,276 @@
+.to-do {
+	background: repeat-y 90% 0% / 870px url("../../img/sheet.jpg");
+	box-shadow: 10px 10px 5px rgba(0,0,0,0.6);
+	padding: 20px 15px;
+
+	@media (min-width: $md) {
+		background-position: center;
+		padding: 20px;
+		box-shadow: 15px 15px 5px rgba(0,0,0,0.6);
+	}
+
+	@media (min-width: $lg) {
+		box-shadow: 25px 25px 5px rgba(0,0,0,0.6);
+	}
+
+  &__title {
+    text-align: center;
+    font-size: 46px;
+    margin: 0 0 20px 0;
+
+    @media (min-width: $md) {
+      font-size: 50px;
+      margin: 0 0 30px 0;
+    }
+
+    @media (min-width: $lg) {
+      font-size: 55px;
+    }
+
+    @media (min-width: $xl) {
+      font-size: 60px;
+    }
+  }
+
+	&__h2 {
+		font-size: 38px;
+		margin: 0 0 10px 0;
+
+		@media (min-width: $md) {
+			font-size: 42px;
+			margin-bottom: 15px;
+		}
+
+		@media (min-width: $lg) {
+			font-size: 44px;
+		}
+
+		@media (min-width: $xl) {
+			font-size: 48px;
+		}
+	}
+
+	&__header {
+		@media (min-width: $md) {
+			display: flex;
+			gap: 15px;
+		}
+	}
+
+	&__filter {
+		margin: 0 0 20px 0;
+
+		@media (min-width: $md) {
+			flex-shrink: 0;
+			width: calc(50% - 8px);
+			margin-bottom: 0;
+		}
+
+		&-list {
+			padding: 0 0 0 15px;
+			margin: 0;
+			list-style: none;
+
+			@media (min-width: $md) {
+				padding-left: 30px;
+			}
+		}
+
+		&-item {
+			margin-bottom: 5px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			@media (min-width: $md) {
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	&__search {
+		@media (min-width: $md) {
+			flex-shrink: 0;
+			width: calc(50% - 8px);
+		}
+
+		&-input {
+			width: 100%;
+
+			@media (min-width: $xs) {
+				width: 250px;
+			}
+		}
+	}
+
+	&__header,
+	&__list,
+	&__message {
+		margin: 0 0 20px 0;
+
+    @media (min-width: $md) {
+      margin-bottom: 30px;
+    }
+	}
+
+  &__list {
+    list-style: none;
+    padding: 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+  }
+
+	&__item {
+		min-width: 450px;
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 10px;
+
+		&:first-child {
+			.to-do__item-arrow:first-child {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+
+			.to-do__item-arrow:last-child {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+		}
+
+		@media (min-width: $md) {
+			margin-bottom: 15px;
+		}
+
+		&-delete {
+			margin: 0 0 0 15px;
+			background: none;
+			border: none;
+			outline: none;
+			color: $red;
+			font-size: 28px;
+			cursor: pointer;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			@media (min-width: $md) {
+				font-size: 30px;
+			}
+		}
+
+		&-checkbox {
+			margin: 0 auto 0 0;
+		}
+
+		&-arrows {
+			margin: 0 0 0 15px;
+			display: flex;
+			gap: 5px;
+		}
+
+		&-arrow {
+			background: none;
+			border-color: transparent;
+			outline: none;
+			width: 36px;
+			height: 36px;
+			position: relative;
+			cursor: pointer;
+
+			&:hover {
+				background: $blue;
+
+				&::before {
+					background: $white;
+				}
+
+				&::after {
+					border-color: $white;
+				}
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+			}
+
+			&::before {
+				width: 2px;
+				height: 24px;
+				background: $blue;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			&::after {
+				width: 10px;
+				height: 10px;
+				border-top: 2px solid $blue;
+				border-left: 2px solid $blue;
+				top: 5px;
+				transform: translate(-50%, 0) rotate(45deg);
+			}
+
+			&:last-child {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+  &__message {
+		font-size: 33px;
+		line-height: 1;
+
+    @media (min-width: $md) {
+			font-size: 35px;
+    }
+  }
+
+	&__form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 15px;
+	}
+
+	&__input {
+		width: 100%;
+		
+		@media (min-width: $xs) {
+			width: calc(50% - 8px);
+		}
+
+		@media (min-width: $md) {
+			width: 250px;
+		}
+	}	
+
+	&__add {
+		width: 100%;
+		
+		@media (min-width: $xs) {
+			width: calc(50% - 8px);
+		}
+
+		@media (min-width: $md) {
+			width: auto;
+		}
+	}
+
+	&__delete {
+		width: 100%;
+
+		@media (min-width: $md) {
+			width: auto;
+			margin-left: auto;
+		}
+	}
+}
