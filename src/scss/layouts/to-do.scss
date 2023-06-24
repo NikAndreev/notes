@@ -181,47 +181,15 @@
 			outline: none;
 			width: 36px;
 			height: 36px;
-			position: relative;
 			cursor: pointer;
+			color: $blue;
+			font-size: 36px;
+			line-height: 1;
+			text-align: center;
 
 			&:hover {
 				background: $blue;
-
-				&::before {
-					background: $white;
-				}
-
-				&::after {
-					border-color: $white;
-				}
-			}
-
-			&::before,
-			&::after {
-				content: '';
-				position: absolute;
-				left: 50%;
-			}
-
-			&::before {
-				width: 2px;
-				height: 24px;
-				background: $blue;
-				top: 50%;
-				transform: translate(-50%, -50%);
-			}
-
-			&::after {
-				width: 10px;
-				height: 10px;
-				border-top: 2px solid $blue;
-				border-left: 2px solid $blue;
-				top: 5px;
-				transform: translate(-50%, 0) rotate(45deg);
-			}
-
-			&:last-child {
-				transform: rotate(180deg);
+				color: $white;
 			}
 		}
 	}

@@ -38,7 +38,7 @@ const Filter = ({filter, setFilter}) => {
                   className="checkbox__custom"
                 >
                 </button>
-                <span className="checkbox__text checkbox__text--no-line">
+                <span className="checkbox__text">
                   {item.text}
                 </span>
               </label>
