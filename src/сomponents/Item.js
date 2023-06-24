@@ -1,8 +1,19 @@
-const Item = ({item, remove}) => {
+const Item = ({item, remove, toggle, move}) => {
   const onRemove = () => {
     if (window.confirm('Вы уверены, что хотите удалить?')) {
       remove(item)
     } 
+  }
+
+  const onToggle = () => {
+    toggle({
+      ...item,
+      isCompleted: !item.isCompleted
+    })
+  }
+
+  const onMove = (direction) => {
+    move(item, direction)
   }
 
   return (
@@ -11,6 +22,8 @@ const Item = ({item, remove}) => {
         <input 
           type="checkbox" 
           className="checkbox__native"   
+          checked={item.isCompleted}
+          onChange={onToggle}
         />
         <button 
           type="button" 
@@ -24,11 +37,13 @@ const Item = ({item, remove}) => {
       <span className="to-do__item-arrows">
         <button 
           className="to-do__item-arrow"
+          onClick={() => onMove('up')}
         >
           🠕
         </button>
         <button 
           className="to-do__item-arrow"
+          onClick={() => onMove('down')}
         >
           🠗
         </button>

@@ -1,6 +1,6 @@
 import Item from './Item'
 
-const Items = ({items, remove}) => {
+const Items = ({items, remove, toggle, move}) => {
   if (items.length) {
     return (
       <ul className="to-do__list">
@@ -10,6 +10,8 @@ const Items = ({items, remove}) => {
               key={item.id}
               item={item}
               remove={remove}
+              toggle={toggle}
+              move={move}
             />
           )
         }
