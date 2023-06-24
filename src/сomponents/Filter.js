@@ -15,30 +15,30 @@ const Filter = ({filter, setFilter}) => {
   ]
 
   return (
-    <div className="to-do__filter">
+    <div className="to-do__header-column">
       <div className="to-do__h2">Фильтр:</div>
-      <ul className="to-do__filter-list">
+      <ul className="to-do__filter">
         {
           items.map(item => 
             <li 
               className="to-do__filter-item"
               key={item.value}
             >
-              <label className="checkbox">
+              <label className="radio">
                 <input 
                   type="radio" 
                   name="filter" 
-                  className="checkbox__native" 
+                  className="radio__native" 
                   value={item.value} 
                   checked={item.value === filter}
                   onChange={e => setFilter(e.target.value)}
                 />
                 <button 
                   type="button" 
-                  className="checkbox__custom"
+                  className="radio__custom"
                 >
                 </button>
-                <span className="checkbox__text">
+                <span className="radio__text">
                   {item.text}
                 </span>
               </label>

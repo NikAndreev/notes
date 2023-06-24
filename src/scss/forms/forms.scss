@@ -57,27 +57,28 @@
 	}
 }
 
-.checkbox {
-  cursor: pointer;
+.checkbox,
+.radio {
+	cursor: pointer;
 
   &__native {
     display: none;
   }
 
-  &__custom {
+	&__custom {
 		display: inline-block;
 		vertical-align: top;
-		margin-top: 4px;
-		margin-right: 4px;
-		width: 24px;
-		height: 24px;
 		border: 1px solid $black;
 		position: relative;
 		overflow: hidden;
 		background: none;
 		outline: none;
 		pointer-events: none;
-
+		margin-top: 4px;
+		margin-right: 4px;
+		width: 24px;
+		height: 24px;
+		
 		@media (min-width: $md) {
 			margin-top: 8px;
 			margin-right: 8px;
@@ -85,17 +86,11 @@
 
 		&::before {
 			content: "";
-			width: 20px;
-			height: 15px;
-			border-right: 2px solid $blue;
-			border-bottom: 2px solid $blue;
 			position: absolute;
 			left: 50%;
-			bottom: 0;
-			transform: translate(-50%, -50%) rotate(45deg);
 			opacity: 0;
 		}
-  }
+	}
 
 	&__text {
 		font-size: 33px;
@@ -106,13 +101,41 @@
 		}
 	}
 
-  &__native:checked + .checkbox__custom {
+  &__native:checked + &__custom {
     &::before {
       opacity: 1;
     }
   }
+}
 
-	&--line &__native:checked ~ .checkbox__text{
+.checkbox {
+  &__custom {
+		&::before {
+			width: 20px;
+			height: 15px;
+			border-right: 2px solid $blue;
+			border-bottom: 2px solid $blue;
+			bottom: 0;
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+  }
+
+	&__native:checked ~ .checkbox__text{
 		text-decoration: line-through $red;
+	}
+}
+
+.radio {
+	&__custom {
+		border-radius: 50%;
+
+		&::before {
+			width: 60%;
+			height: 60%;
+			background: $blue;
+			border-radius: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 }

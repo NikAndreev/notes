@@ -7,7 +7,7 @@ const Item = ({item, remove}) => {
 
   return (
     <li className="to-do__item">
-      <label className="checkbox checkbox--line to-do__item-checkbox">
+      <label className="checkbox to-do__item-checkbox">
         <input 
           type="checkbox" 
           className="checkbox__native"   
