@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setItemsAction } from "../store/reducers/items";
+import { moveItemAction } from "../store/reducers/items";
 import Item from "./Item";
 
 const Items = ({ items }) => {
@@ -16,27 +16,7 @@ const Items = ({ items }) => {
         filteredAndSearchedItems.findIndex((i) => i.id === item.id) + shift
       ];
 
-    dispatch(
-      setItemsAction(
-        items.map((i) => {
-          if (i.id === item.id) {
-            return {
-              ...i,
-              order: closestItem.order,
-            };
-          }
-
-          if (i.id === closestItem.id) {
-            return {
-              ...i,
-              order: item.order,
-            };
-          }
-
-          return i;
-        })
-      )
-    );
+    dispatch(moveItemAction([item, closestItem]));
   };
 
   const filteredItems = useMemo(() => {
