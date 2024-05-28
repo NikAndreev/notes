@@ -1,5 +1,6 @@
 const defaultState = {
   items: [],
+  loading: true,
 };
 
 const SET_ITEMS = "SET_ITEMS";
@@ -8,6 +9,7 @@ const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const TOGGLE_ITEM = "TOGGLE_ITEM";
 const MOVE_ITEM = "MOVE_ITEM";
+const SET_LOADING = "SET_LOADING";
 
 export const itemsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -52,6 +54,11 @@ export const itemsReducer = (state = defaultState, action) => {
           return item;
         }),
       };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
     default:
       return state;
   }
@@ -63,3 +70,4 @@ export const addItemAction = (payload) => ({ type: ADD_ITEM, payload });
 export const removeItemAction = (payload) => ({ type: REMOVE_ITEM, payload });
 export const toggleItemAction = (payload) => ({ type: TOGGLE_ITEM, payload });
 export const moveItemAction = (payload) => ({ type: MOVE_ITEM, payload });
+export const setLoadingAction = (payload) => ({ type: SET_LOADING, payload });

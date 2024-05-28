@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { thunk } from "redux-thunk";
 import { itemsReducer } from "./reducers/items";
 import { filterReducer } from "./reducers/filter";
 import { searchReducer } from "./reducers/search";
@@ -9,4 +10,4 @@ const rootReducer = combineReducers({
   search: searchReducer,
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));

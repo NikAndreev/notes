@@ -21,7 +21,6 @@ const Form = ({ items }) => {
         addItemAction({
           ...item,
           id: Date.now(),
-          createdAt: new Date(),
           isCompleted: false,
           order: items.length ? items[items.length - 1].order + 1 : 0,
         })

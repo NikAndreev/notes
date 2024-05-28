@@ -1,13 +1,14 @@
 import React, { useMemo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Filter from "./сomponents/Filter";
 import Search from "./сomponents/Search";
 import Form from "./сomponents/Form";
 import Items from "./сomponents/Items";
-import { useDispatch, useSelector } from "react-redux";
-import { setItemsAction } from "./store/reducers/items";
+import Loader from "./сomponents/Loader";
+import { fetchItems } from "./asyncActions/items";
 
 function App() {
-  const items = useSelector((state) => state.items.items);
+  const { items, loading } = useSelector((state) => state.items);
 
   const orderedItems = useMemo(() => {
     return [...items].sort((a, b) => {
@@ -20,16 +21,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const LSItems = localStorage.getItem("items");
-
-    if (LSItems) {
-      dispatch(setItemsAction(JSON.parse(LSItems)));
-    }
+    dispatch(fetchItems());
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
 
   return (
     <div className="container">
@@ -39,7 +32,7 @@ function App() {
           <Filter />
           <Search />
         </div>
-        <Items items={orderedItems} />
+        {loading ? <Loader /> : <Items items={orderedItems} />}
         <Form items={orderedItems} />
       </section>
     </div>
