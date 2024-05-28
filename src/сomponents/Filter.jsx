@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterAction } from "../store/reducers/filter";
 
@@ -24,6 +25,18 @@ const Filter = () => {
       text: "Невыполненные",
     },
   ];
+
+  useEffect(() => {
+    const LSFilter = localStorage.getItem("filter");
+
+    if (LSFilter) {
+      dispatch(setFilterAction(JSON.parse(LSFilter)));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("filter", JSON.stringify(filter));
+  }, [filter]);
 
   return (
     <div className="to-do__header-column">
