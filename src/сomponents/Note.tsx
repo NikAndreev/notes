@@ -3,7 +3,13 @@ import classNames from "classnames";
 
 import notesStore from "../stores/notesStore";
 
-const Note = observer(({ note }) => {
+import type { INote } from "../types/note";
+
+interface NoteProps {
+  note: INote;
+}
+
+const Note = observer(({ note }: NoteProps) => {
   const { completeNote, moveNote, deleteNote } = notesStore;
 
   return (

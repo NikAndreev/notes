@@ -1,8 +1,10 @@
 import { makeAutoObservable, reaction } from "mobx";
 import NotesService from "../services/NotesService";
 
+import type { INote } from "../types/note";
+
 class NotesStore {
-  notes = [];
+  notes: INote[] = [];
   loading = true;
   filter = "";
   search = "";
@@ -46,7 +48,7 @@ class NotesStore {
     }
   };
 
-  createNote = (title) => {
+  createNote = (title: string) => {
     this.notes.push({
       title,
       id: Date.now(),
@@ -54,7 +56,7 @@ class NotesStore {
     });
   };
 
-  deleteNote = (id) => {
+  deleteNote = (id: number) => {
     this.notes = this.notes.filter((note) => note.id !== id);
   };
 
@@ -62,11 +64,11 @@ class NotesStore {
     this.notes = [];
   };
 
-  completeNote = (note) => {
+  completeNote = (note: INote) => {
     note.completed = !note.completed;
   };
 
-  moveNote = (noteA, direction) => {
+  moveNote = (noteA: INote, direction: string) => {
     const shift = direction === "up" ? -1 : 1;
 
     const noteB =
@@ -83,11 +85,11 @@ class NotesStore {
     ];
   };
 
-  setFilter = (filter) => {
+  setFilter = (filter: string) => {
     this.filter = filter;
   };
 
-  setSearch = (search) => {
+  setSearch = (search: string) => {
     this.search = search;
   };
 }

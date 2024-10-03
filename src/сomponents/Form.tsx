@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 
@@ -13,7 +13,7 @@ const Form = observer(() => {
 
   const [showInput, setShowInput] = useState(false);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     if (!showInput) {
