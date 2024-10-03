@@ -7,7 +7,6 @@ const Search = observer(() => {
 
   return (
     <div className="to-do__header-column">
-      <div className="to-do__h2">Поиск:</div>
       <input
         type="text"
         placeholder="Начните печатать..."

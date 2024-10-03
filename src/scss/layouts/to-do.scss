@@ -1,4 +1,7 @@
 .to-do {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background: repeat-y 90% 0% / 870px url("../../img/sheet.jpg");
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.6);
   padding: 20px 15px;
@@ -72,13 +75,9 @@
   }
 
   &__filter {
-    padding: 0 0 0 15px;
+    padding: 0;
     margin: 0;
     list-style: none;
-
-    @media (min-width: $md) {
-      padding-left: 30px;
-    }
 
     &-item {
       margin-bottom: 5px;
@@ -113,14 +112,14 @@
   }
 
   &__list {
+    flex: 1 1 auto;
     list-style: none;
     padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   &__item {
-    min-width: 450px;
     display: flex;
     align-items: flex-start;
     margin-bottom: 10px;
@@ -145,49 +144,58 @@
       margin-bottom: 15px;
     }
 
-    &-delete {
-      margin: 0 0 0 15px;
-      background: none;
-      border: none;
-      outline: none;
-      color: $red;
-      font-size: 28px;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      @media (min-width: $md) {
-        font-size: 30px;
-      }
-    }
-
-    &-checkbox {
-      margin: 0 auto 0 0;
-    }
-
-    &-arrows {
+    &-buttons {
       margin: 0 0 0 15px;
       display: flex;
       gap: 5px;
     }
 
-    &-arrow {
+    &-control {
       background: none;
       border-color: transparent;
       outline: none;
       width: 36px;
       height: 36px;
       cursor: pointer;
-      color: $blue;
-      font-size: 36px;
-      line-height: 1;
-      text-align: center;
 
-      &:hover {
-        background: $blue;
-        color: $white;
+      &.arrow {
+        color: $blue;
+        font-size: 36px;
+        line-height: 1;
+        text-align: center;
+
+        &:hover {
+          background: $blue;
+          color: $white;
+        }
+      }
+
+      &.delete {
+        color: $red;
+        font-size: 30px;
+        line-height: 26px;
+        font-weight: 600;
+        text-align: center;
+
+        &:hover {
+          background: $red;
+          color: $white;
+        }
+      }
+    }
+
+    &-title {
+      flex: 1 1 auto;
+      font-size: 33px;
+      line-height: 1;
+      cursor: pointer;
+
+      @media (min-width: $md) {
+        font-size: 35px;
+      }
+
+      &.completed {
+        text-decoration: line-through;
       }
     }
   }
@@ -204,39 +212,37 @@
   &__form {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 15px;
+    gap: 5px 0;
+    margin-top: auto;
+
+    @media (min-width: $sm) {
+      flex-wrap: nowrap;
+      gap: 0 10px;
+    }
   }
 
   &__input {
     width: 100%;
 
-    @media (min-width: $xs) {
-      width: calc(50% - 8px);
-    }
-
-    @media (min-width: $md) {
-      width: 250px;
+    @media (min-width: $sm) {
+      width: 100%;
     }
   }
 
   &__add {
     width: 100%;
 
-    @media (min-width: $xs) {
-      width: calc(50% - 8px);
-    }
-
-    @media (min-width: $md) {
+    @media (min-width: $sm) {
       width: auto;
+      margin-left: auto;
     }
   }
 
   &__delete {
     width: 100%;
 
-    @media (min-width: $md) {
+    @media (min-width: $sm) {
       width: auto;
-      margin-left: auto;
     }
   }
 }

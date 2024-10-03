@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
+import classNames from "classnames";
 
 import notesStore from "../stores/notesStore";
 
@@ -10,8 +11,15 @@ const Form = observer(() => {
 
   const [isError, setIsError] = useState(false);
 
+  const [showInput, setShowInput] = useState(false);
+
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (!showInput) {
+      setShowInput(true);
+      return;
+    }
 
     if (!title) {
       setIsError(true);
@@ -20,19 +28,26 @@ const Form = observer(() => {
 
     setIsError(false);
 
-    createNote(title);
+    setShowInput(false);
 
     setTitle("");
+
+    createNote(title);
   };
 
   return (
     <form className="to-do__form" onSubmit={onSubmit}>
-      <input
-        type="text"
-        className={isError ? "input to-do__input error" : "input to-do__input"}
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      {showInput && (
+        <input
+          type="text"
+          className={classNames("input", "to-do__input", {
+            error: isError,
+          })}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          autoFocus
+        />
+      )}
       <button type="submit" className="btn btn--blue to-do__add">
         Добавить заметку
       </button>
@@ -40,7 +55,7 @@ const Form = observer(() => {
         type="button"
         className="btn btn--red to-do__delete"
         onClick={deleteAllNotes}>
-        Очистить список
+        Удалить всё
       </button>
     </form>
   );

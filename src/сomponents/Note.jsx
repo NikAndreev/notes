@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import classNames from "classnames";
 
 import notesStore from "../stores/notesStore";
 
@@ -7,34 +8,31 @@ const Note = observer(({ note }) => {
 
   return (
     <li className="to-do__item">
-      <label className="checkbox to-do__item-checkbox">
-        <input
-          type="checkbox"
-          className="checkbox__native"
-          checked={note.completed}
-          onChange={() => completeNote(note)}
-        />
-        <button type="button" className="checkbox__custom"></button>
-        <span className="checkbox__text">{note.title}</span>
-      </label>
-      <span className="to-do__item-arrows">
+      <div
+        className={classNames("to-do__item-title", {
+          completed: note.completed,
+        })}
+        onClick={() => completeNote(note)}>
+        {note.title}
+      </div>
+      <span className="to-do__item-buttons">
         <button
-          className="to-do__item-arrow"
+          className="to-do__item-control arrow"
           onClick={() => moveNote(note, "up")}>
           🠕
         </button>
         <button
-          className="to-do__item-arrow"
+          className="to-do__item-control arrow"
           onClick={() => moveNote(note, "down")}>
           🠗
         </button>
+        <button
+          type="button"
+          className="to-do__item-control delete"
+          onClick={() => deleteNote(note.id)}>
+          X
+        </button>
       </span>
-      <button
-        type="button"
-        className="to-do__item-delete"
-        onClick={() => deleteNote(note.id)}>
-        Удалить
-      </button>
     </li>
   );
 });

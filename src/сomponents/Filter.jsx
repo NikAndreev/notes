@@ -22,7 +22,6 @@ const Filter = observer(() => {
 
   return (
     <div className="to-do__header-column">
-      <div className="to-do__h2">Фильтр:</div>
       <ul className="to-do__filter">
         {fields.map((field) => (
           <li className="to-do__filter-item" key={field.value}>
