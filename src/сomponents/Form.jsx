@@ -1,43 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItemAction, clearItemsAction } from "../store/reducers/items";
+import { observer } from "mobx-react-lite";
 
-const Form = ({ items }) => {
-  const dispatch = useDispatch();
+import notesStore from "../stores/notesStore";
 
-  const [item, setItem] = useState({
-    title: "",
-  });
+const Form = observer(() => {
+  const { createNote, deleteAllNotes } = notesStore;
+
+  const [title, setTitle] = useState("");
 
   const [isError, setIsError] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (item.title) {
-      setIsError(false);
-
-      dispatch(
-        addItemAction({
-          ...item,
-          id: Date.now(),
-          isCompleted: false,
-          order: items.length ? items[items.length - 1].order + 1 : 0,
-        })
-      );
-
-      setItem({
-        title: "",
-      });
-    } else {
+    if (!title) {
       setIsError(true);
+      return;
     }
-  };
 
-  const onСlear = () => {
-    if (window.confirm("Вы уверены, что хотите очистить список?")) {
-      dispatch(clearItemsAction());
-    }
+    setIsError(false);
+
+    createNote(title);
+
+    setTitle("");
   };
 
   return (
@@ -45,8 +30,8 @@ const Form = ({ items }) => {
       <input
         type="text"
         className={isError ? "input to-do__input error" : "input to-do__input"}
-        value={item.title}
-        onChange={(e) => setItem({ ...item, title: e.target.value })}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <button type="submit" className="btn btn--blue to-do__add">
         Добавить заметку
@@ -54,11 +39,11 @@ const Form = ({ items }) => {
       <button
         type="button"
         className="btn btn--red to-do__delete"
-        onClick={onСlear}>
+        onClick={deleteAllNotes}>
         Очистить список
       </button>
     </form>
   );
-};
+});
 
 export default Form;

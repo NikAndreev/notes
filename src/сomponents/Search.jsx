@@ -1,14 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchAction } from "../store/reducers/search";
+import { observer } from "mobx-react-lite";
 
-const Search = () => {
-  const search = useSelector((state) => state.search.search);
+import notesStore from "../stores/notesStore";
 
-  const dispatch = useDispatch();
-
-  const setSearch = (search) => {
-    dispatch(setSearchAction(search));
-  };
+const Search = observer(() => {
+  const { search, setSearch } = notesStore;
 
   return (
     <div className="to-do__header-column">
@@ -22,6 +17,6 @@ const Search = () => {
       />
     </div>
   );
-};
+});
 
 export default Search;

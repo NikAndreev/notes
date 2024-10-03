@@ -1,27 +1,18 @@
-import React, { useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import Filter from "./сomponents/Filter";
 import Search from "./сomponents/Search";
 import Form from "./сomponents/Form";
-import Items from "./сomponents/Items";
+import Notes from "./сomponents/Notes";
 import Loader from "./сomponents/Loader";
-import { fetchItems } from "./asyncActions/items";
+import { observer } from "mobx-react-lite";
 
-function App() {
-  const { items, loading } = useSelector((state) => state.items);
+import notesStore from "./stores/notesStore";
 
-  const orderedItems = useMemo(() => {
-    return [...items].sort((a, b) => {
-      if (a.order > b.order) return 1;
-      if (a.order < b.order) return -1;
-      return 0;
-    });
-  }, [items]);
-
-  const dispatch = useDispatch();
+const App = observer(() => {
+  const { loading, getNotes } = notesStore;
 
   useEffect(() => {
-    dispatch(fetchItems());
+    getNotes();
   }, []);
 
   return (
@@ -32,11 +23,11 @@ function App() {
           <Filter />
           <Search />
         </div>
-        {loading ? <Loader /> : <Items items={orderedItems} />}
-        <Form items={orderedItems} />
+        {loading ? <Loader /> : <Notes />}
+        <Form />
       </section>
     </div>
   );
-}
+});
 
 export default App;
