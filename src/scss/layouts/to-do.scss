@@ -125,7 +125,7 @@
     margin-bottom: 10px;
 
     &:first-child {
-      .to-do__item-arrow:first-child {
+      .arrow:nth-child(1) {
         opacity: 0.5;
         pointer-events: none;
       }
@@ -134,7 +134,7 @@
     &:last-child {
       margin-bottom: 0;
 
-      .to-do__item-arrow:last-child {
+      .arrow:nth-child(2) {
         opacity: 0.5;
         pointer-events: none;
       }

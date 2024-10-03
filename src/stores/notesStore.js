@@ -67,15 +67,20 @@ class NotesStore {
   };
 
   moveNote = (noteA, direction) => {
-    const noteAIndex = this.notes.findIndex((note) => note.id === noteA.id);
-
     const shift = direction === "up" ? -1 : 1;
 
-    const noteB = this.notes[noteAIndex + shift];
+    const noteB =
+      this.filteredAndSearchedNotes[
+        this.filteredAndSearchedNotes.indexOf(noteA) + shift
+      ];
 
-    this.notes[noteAIndex + shift] = noteA;
+    const indexA = this.notes.indexOf(noteA);
+    const indexB = this.notes.indexOf(noteB);
 
-    this.notes[noteAIndex] = noteB;
+    [this.notes[indexA], this.notes[indexB]] = [
+      this.notes[indexB],
+      this.notes[indexA],
+    ];
   };
 
   setFilter = (filter) => {
