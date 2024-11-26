@@ -31,7 +31,7 @@ const App = observer(() => {
             <Search />
           </div>
         </div>
-        {loading ? <Loader className={styles.header__loader} /> : <Notes />}
+        {loading ? <Loader className={styles.page__loader} /> : <Notes />}
         <Form />
       </section>
     </Container>
