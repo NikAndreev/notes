@@ -1,0 +1,19 @@
+@import "../../scss/variables.scss";
+
+.filter {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &__item {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $md) {
+      margin-bottom: 10px;
+    }
+  }
+}

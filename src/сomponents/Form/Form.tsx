@@ -1,16 +1,17 @@
 import React, { FormEvent, useState } from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
+import notesStore from "../../stores/notesStore";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
-import notesStore from "../stores/notesStore";
+import styles from "./Form.module.scss";
 
 const Form = observer(() => {
   const { createNote, deleteAllNotes } = notesStore;
 
   const [title, setTitle] = useState("");
-
   const [isError, setIsError] = useState(false);
-
   const [showInput, setShowInput] = useState(false);
 
   const onSubmit = (e: FormEvent) => {
@@ -27,36 +28,32 @@ const Form = observer(() => {
     }
 
     setIsError(false);
-
     setShowInput(false);
-
     setTitle("");
-
     createNote(title);
   };
 
   return (
-    <form className="to-do__form" onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       {showInput && (
-        <input
-          type="text"
-          className={classNames("input", "to-do__input", {
-            error: isError,
-          })}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+        <Input
+          className={classNames(styles.form__input)}
+          isError={isError}
           autoFocus
+          value={title}
+          onChange={setTitle}
         />
       )}
-      <button type="submit" className="btn btn--blue to-do__add">
+      <Button type="submit" theme="blue" className={styles.form__add}>
         Добавить заметку
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
-        className="btn btn--red to-do__delete"
+        theme="red"
+        className={styles.form__delete}
         onClick={deleteAllNotes}>
         Удалить всё
-      </button>
+      </Button>
     </form>
   );
 });

@@ -1,0 +1,10 @@
+@import "../../../scss/variables.scss";
+
+.title {
+  text-align: center;
+  font-size: 46px;
+
+  @media (min-width: $md) {
+    font-size: 55px;
+  }
+}

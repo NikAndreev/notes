@@ -1,17 +1,18 @@
-import Note from "./Note";
 import { observer } from "mobx-react-lite";
+import notesStore from "../../stores/notesStore";
+import Note from "../Note";
 
-import notesStore from "../stores/notesStore";
+import styles from "./Notes.module.scss";
 
 const Notes = observer(() => {
   const { filteredAndSearchedNotes } = notesStore;
 
   if (!filteredAndSearchedNotes.length) {
-    return <div className="to-do__message">Заметок пока нет.</div>;
+    return <div className={styles.empty}>Заметок пока нет.</div>;
   }
 
   return (
-    <ul className="to-do__list">
+    <ul className={styles.notes}>
       {filteredAndSearchedNotes.map((note) => (
         <Note key={note.id} note={note} />
       ))}

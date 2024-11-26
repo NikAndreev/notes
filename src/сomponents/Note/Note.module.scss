@@ -1,0 +1,79 @@
+@import "../../scss/variables.scss";
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+  &:first-child .up {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:last-child .down {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: $md) {
+    margin-bottom: 15px;
+  }
+
+  &__controls {
+    display: flex;
+    gap: 5px;
+    margin: 0 0 0 15px;
+  }
+
+  &__control {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border-color: transparent;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+
+    &.arrow {
+      color: $blue;
+      font-size: 36px;
+      line-height: 1;
+
+      &:hover {
+        background: $blue;
+        color: $white;
+      }
+    }
+
+    &.delete {
+      color: $red;
+      font-size: 30px;
+      line-height: 26px;
+      font-weight: 600;
+
+      &:hover {
+        background: $red;
+        color: $white;
+      }
+    }
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    font-size: 33px;
+    line-height: 1;
+    cursor: pointer;
+
+    @media (min-width: $md) {
+      font-size: 35px;
+    }
+
+    &.completed {
+      text-decoration: line-through;
+    }
+  }
+}

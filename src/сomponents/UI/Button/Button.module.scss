@@ -1,0 +1,32 @@
+@import "../../../scss/variables.scss";
+
+.button {
+  padding: 7px 10px;
+  font-size: 22px;
+  background: transparent;
+  outline: none;
+  border-width: 2px;
+  white-space: nowrap;
+  user-select: none;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  border-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.blue {
+    color: $blue;
+  }
+
+  &.red {
+    color: $red;
+  }
+
+  @media (min-width: $md) {
+    padding: 7px 15px;
+    font-size: 24px;
+  }
+}

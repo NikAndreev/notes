@@ -1,0 +1,56 @@
+@import "../../../scss/variables.scss";
+
+.radio {
+  cursor: pointer;
+
+  &__native {
+    display: none;
+  }
+
+  &__custom {
+    display: inline-block;
+    vertical-align: top;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    outline: none;
+    pointer-events: none;
+    margin-top: 4px;
+    margin-right: 4px;
+
+    @media (min-width: $md) {
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      background: $blue;
+      border-radius: 50%;
+      opacity: 0;
+    }
+  }
+
+  &__native:checked + &__custom::before {
+    opacity: 1;
+  }
+
+  &__label {
+    font-size: 33px;
+    line-height: 1;
+
+    @media (min-width: $md) {
+      font-size: 35px;
+    }
+  }
+}

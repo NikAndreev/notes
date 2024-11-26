@@ -1,0 +1,9 @@
+@import "../../scss/variables.scss";
+
+.search {
+  width: 100%;
+
+  @media (min-width: $sm) {
+    max-width: 250px;
+  }
+}

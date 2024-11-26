@@ -1,7 +1,7 @@
 import { makeAutoObservable, reaction } from "mobx";
 import NotesService from "../services/NotesService";
 
-import type { INote } from "../types/note";
+import type { INote } from "../types/notes";
 
 class NotesStore {
   notes: INote[] = [];

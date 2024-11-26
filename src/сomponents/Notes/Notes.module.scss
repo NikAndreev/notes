@@ -1,0 +1,27 @@
+@import "../../scss/variables.scss";
+
+.notes {
+  flex: 1 1 auto;
+  list-style: none;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.empty {
+  font-size: 33px;
+  line-height: 1;
+
+  @media (min-width: $md) {
+    font-size: 35px;
+  }
+}
+
+.notes,
+.empty {
+  margin: 0 0 20px 0;
+
+  @media (min-width: $md) {
+    margin-bottom: 30px;
+  }
+}

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import type { INote } from "../types/note";
+import type { INote } from "../types/notes";
 
 export default class NotesService {
   static async getAll(): Promise<AxiosResponse<INote[]>> {
