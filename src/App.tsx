@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 import notesStore from "./stores/notesStore";
-import Filter from "./сomponents/Filter";
-import Form from "./сomponents/Form";
-import Notes from "./сomponents/Notes";
-import Search from "./сomponents/Search";
-import Title from "./сomponents/UI/Title";
-import Loader from "./сomponents/UI/Loader";
-import Container from "./сomponents/UI/Container";
+import Filter from "./components/Filter";
+import Form from "./components/Form";
+import Notes from "./components/Notes";
+import Search from "./components/Search";
+import Title from "./components/UI/Title";
+import Loader from "./components/UI/Loader";
+import Container from "./components/UI/Container";
 
 import styles from "./App.module.scss";
 
