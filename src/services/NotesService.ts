@@ -1,12 +1,13 @@
-import axios, { AxiosResponse } from "axios";
+import api from "../api";
+import { AxiosResponse } from "axios";
 
 import type { INote } from "../types/notes";
 
 export default class NotesService {
   static async getAll(): Promise<AxiosResponse<INote[]>> {
-    return axios({
+    return api({
       method: "get",
-      url: "https://jsonplaceholder.typicode.com/todos?_limit=5",
+      url: "/todos?_limit=5",
     });
   }
 }
