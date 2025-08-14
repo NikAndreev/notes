@@ -21,24 +21,18 @@ const Note = observer(({ note }: NoteProps) => {
       <span className={styles.note__controls}>
         <button
           className={classNames(styles.note__control, styles.arrow, styles.up)}
-          onClick={() => moveNote(note, "up")}>
-          🠕
-        </button>
+          onClick={() => moveNote(note, "up")}></button>
         <button
           className={classNames(
             styles.note__control,
             styles.arrow,
             styles.down
           )}
-          onClick={() => moveNote(note, "down")}>
-          🠗
-        </button>
+          onClick={() => moveNote(note, "down")}></button>
         <button
           type="button"
           className={classNames(styles.note__control, styles.delete)}
-          onClick={() => deleteNote(note.id)}>
-          X
-        </button>
+          onClick={() => deleteNote(note.id)}></button>
       </span>
     </li>
   );

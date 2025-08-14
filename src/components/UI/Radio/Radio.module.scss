@@ -1,6 +1,9 @@
 @import "../../../scss/variables.scss";
 
 .radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   cursor: pointer;
 
   &__native {
@@ -8,7 +11,7 @@
   }
 
   &__custom {
-    width: 24px;
+    flex: 0 0 24px;
     height: 24px;
     border-radius: 50%;
     border: 1px solid $black;
@@ -17,7 +20,6 @@
     background: none;
     outline: none;
     pointer-events: none;
-    margin-right: 4px;
 
     &::before {
       content: "";

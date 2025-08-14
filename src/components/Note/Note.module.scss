@@ -32,28 +32,90 @@
     border-color: transparent;
     outline: none;
     cursor: pointer;
-    text-align: center;
+    position: relative;
 
     &.arrow {
-      color: $blue;
-      font-size: 36px;
-      line-height: 1;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 3px;
+        height: 24px;
+        background: $blue;
+      }
+
+      &.up::before {
+        bottom: 2px;
+      }
+
+      &.down::before {
+        top: 2px;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border: 5px solid transparent;
+      }
+
+      &.up::after {
+        top: -3px;
+        border-bottom: 10px solid $blue;
+      }
+
+      &.down::after {
+        bottom: -3px;
+        border-top: 10px solid $blue;
+      }
 
       &:hover {
         background: $blue;
         color: $white;
+
+        &::before {
+          background: $white;
+        }
+
+        &.up::after {
+          border-bottom-color: $white;
+        }
+
+        &.down::after {
+          border-top-color: $white;
+        }
       }
     }
 
     &.delete {
-      color: $red;
-      font-size: 30px;
-      line-height: 26px;
-      font-weight: 600;
+      &::before,
+      &::after {
+        content: "";
+        width: 3px;
+        height: 24px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: $red;
+      }
+
+      &::before {
+        transform: translate(-50%, -50%) rotate(35deg);
+      }
+
+      &::after {
+        transform: translate(-50%, -50%) rotate(-35deg);
+      }
 
       &:hover {
         background: $red;
-        color: $white;
+
+        &::before,
+        &::after {
+          background: $white;
+        }
       }
     }
   }
