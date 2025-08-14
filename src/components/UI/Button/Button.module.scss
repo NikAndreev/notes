@@ -17,6 +17,11 @@
     text-decoration: underline;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.blue {
     color: $blue;
   }

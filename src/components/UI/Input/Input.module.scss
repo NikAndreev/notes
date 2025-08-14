@@ -11,8 +11,17 @@
     color: $blue;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.error {
     border-color: $red;
+  }
+
+  &.error::placeholder {
+    color: $red;
   }
 
   @media (min-width: $md) {

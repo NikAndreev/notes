@@ -8,6 +8,7 @@ class NotesStore {
   loading = true;
   filter = "";
   search = "";
+  creation = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -41,19 +42,31 @@ class NotesStore {
       const result = await NotesService.getAll();
 
       this.notes = result.data;
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     } finally {
       this.loading = false;
     }
   };
 
-  createNote = (title: string) => {
-    this.notes.push({
-      title,
-      id: Date.now(),
-      completed: false,
-    });
+  createNote = async (title: string) => {
+    this.creation = true;
+
+    try {
+      const id = Date.now();
+
+      const result = await NotesService.create({
+        id,
+        title,
+        completed: false,
+      });
+
+      this.notes.push({ ...result.data, id });
+    } catch (error) {
+      throw error;
+    } finally {
+      this.creation = false;
+    }
   };
 
   deleteNote = (id: number) => {

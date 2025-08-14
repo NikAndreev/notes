@@ -10,4 +10,12 @@ export default class NotesService {
       url: "/todos?_limit=5",
     });
   }
+
+  static async create(note: INote): Promise<AxiosResponse<INote>> {
+    return api({
+      method: "post",
+      url: "/todos",
+      data: note,
+    });
+  }
 }

@@ -8,13 +8,14 @@ import Button from "../UI/Button";
 import styles from "./Form.module.scss";
 
 const Form = observer(() => {
-  const { createNote, deleteAllNotes } = notesStore;
+  const { creation, createNote, deleteAllNotes } = notesStore;
 
   const [title, setTitle] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [validationError, setValidationError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [showInput, setShowInput] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!showInput) {
@@ -22,38 +23,60 @@ const Form = observer(() => {
       return;
     }
 
-    if (!title) {
-      setIsError(true);
+    if (title.length < 3) {
+      setValidationError(true);
       return;
     }
 
-    setIsError(false);
-    setShowInput(false);
-    setTitle("");
-    createNote(title);
+    setValidationError(false);
+
+    try {
+      await createNote(title);
+
+      setServerError(false);
+      setTitle("");
+      setShowInput(false);
+    } catch (e) {
+      console.log(e);
+
+      setServerError(true);
+    }
   };
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
-      {showInput && (
-        <Input
-          className={classNames(styles.form__input)}
-          isError={isError}
-          autoFocus
-          value={title}
-          onChange={setTitle}
-        />
+      {serverError && (
+        <div className={styles.form__error}>Ошибка от сервера</div>
       )}
-      <Button type="submit" theme="blue" className={styles.form__add}>
-        Добавить заметку
-      </Button>
-      <Button
-        type="button"
-        theme="red"
-        className={styles.form__delete}
-        onClick={deleteAllNotes}>
-        Удалить всё
-      </Button>
+      {validationError && (
+        <div className={styles.form__error}>Минимальная длина — 3 символа</div>
+      )}
+      <div className={styles.form__row}>
+        {showInput && (
+          <Input
+            className={classNames(styles.form__input)}
+            placeholder="Название заметки..."
+            autoFocus
+            value={title}
+            disabled={creation}
+            onChange={setTitle}
+          />
+        )}
+        <Button
+          type="submit"
+          theme="blue"
+          disabled={creation}
+          className={styles.form__add}>
+          {creation ? "Сохранение..." : "Добавить заметку"}
+        </Button>
+        <Button
+          type="button"
+          theme="red"
+          className={styles.form__delete}
+          onClick={deleteAllNotes}>
+          Удалить всё
+        </Button>
+      </div>
     </form>
   );
 });
