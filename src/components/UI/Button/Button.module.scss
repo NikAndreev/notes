@@ -2,7 +2,7 @@
 
 .button {
   padding: 7px 10px;
-  font-size: 22px;
+  font-size: 24px;
   background: transparent;
   outline: none;
   border-width: 2px;
@@ -28,10 +28,5 @@
 
   &.red {
     color: $red;
-  }
-
-  @media (min-width: $md) {
-    padding: 7px 15px;
-    font-size: 24px;
   }
 }

@@ -1,8 +1,8 @@
 @import "../../../scss/variables.scss";
 
 .input {
-  padding: 7px 10px;
-  font-size: 22px;
+  padding: 7px 15px;
+  font-size: 24px;
   background: transparent;
   outline: none;
   border: 2px solid $black;
@@ -22,10 +22,5 @@
 
   &.error::placeholder {
     color: $red;
-  }
-
-  @media (min-width: $md) {
-    padding: 7px 15px;
-    font-size: 24px;
   }
 }

@@ -8,8 +8,6 @@
   }
 
   &__custom {
-    display: inline-block;
-    vertical-align: top;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -19,13 +17,7 @@
     background: none;
     outline: none;
     pointer-events: none;
-    margin-top: 4px;
     margin-right: 4px;
-
-    @media (min-width: $md) {
-      margin-top: 8px;
-      margin-right: 8px;
-    }
 
     &::before {
       content: "";
@@ -48,9 +40,5 @@
   &__label {
     font-size: 33px;
     line-height: 1;
-
-    @media (min-width: $md) {
-      font-size: 35px;
-    }
   }
 }

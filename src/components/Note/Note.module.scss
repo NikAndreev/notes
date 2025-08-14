@@ -19,10 +19,6 @@
     margin-bottom: 0;
   }
 
-  @media (min-width: $md) {
-    margin-bottom: 15px;
-  }
-
   &__controls {
     display: flex;
     gap: 5px;
@@ -67,10 +63,6 @@
     font-size: 33px;
     line-height: 1;
     cursor: pointer;
-
-    @media (min-width: $md) {
-      font-size: 35px;
-    }
 
     &.completed {
       text-decoration: line-through;
