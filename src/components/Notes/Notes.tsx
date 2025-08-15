@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { observer } from "mobx-react-lite";
 import notesStore from "../../stores/notesStore";
 import Note from "../Note";
@@ -13,9 +14,11 @@ const Notes = observer(() => {
 
   return (
     <ul className={styles.notes}>
-      {filteredAndSearchedNotes.map((note) => (
-        <Note key={note.id} note={note} />
-      ))}
+      <AnimatePresence>
+        {filteredAndSearchedNotes.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
+      </AnimatePresence>
     </ul>
   );
 });
